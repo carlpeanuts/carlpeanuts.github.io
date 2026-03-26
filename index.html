@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARLPEANUTS // PORTFOLIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --obsidian: rgba(0, 0, 0, 0.88);
+            --liquid-edge: rgba(255, 255, 255, 0.1);
+            --accent: #00e1ff;
+            --font-main: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            --bg-brightness: 0.5;
+        }
+
+        /* --- BRIGHT CODE LOGIC --- */
+        body.bright-mode {
+            --bg-brightness: 1.2;
+            --obsidian: rgba(0, 0, 0, 0.5);
+            --accent: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            background: #000;
+            color: #ffffff;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- VIDEO BACKGROUND --- */
+        #video-bg {
+            position: fixed;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            filter: brightness(var(--bg-brightness));
+            transition: filter 1s ease;
+            object-fit: cover;
+        }
+
+        /* --- ENTRY OVERLAY --- */
+        #entry-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10001;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 1s ease;
+            text-align: center;
+        }
+
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 20px var(--accent);
+            mix-blend-mode: difference;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 60px auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .black-glass {
+            background: var(--obsidian);
+            backdrop-filter: blur(45px);
+            -webkit-backdrop-filter: blur(45px);
+            border: 1px solid var(--liquid-edge);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            transition: transform 0.1s ease-out, background 0.5s ease;
+        }
+
+        .btn-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        
+        .liquid-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 16px;
+            border-radius: 14px;
+            color: #ccc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .liquid-btn i { color: var(--accent); width: 20px; text-align: center; }
+
+        .liquid-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(8px);
+            border-color: var(--accent);
+        }
+
+        .terminal {
+            background: #000;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 18px;
+            font-family: 'Courier New', monospace;
+        }
+        .terminal input {
+            background: transparent; border: none; color: var(--accent); outline: none; width: 85%;
+        }
+
+        @media (max-width: 600px) { #cursor { display: none; } * { cursor: auto; } }
+    </style>
+</head>
+<body>
+
+    <div id="entry-overlay" onclick="startExperience()">
+        <h1 style="letter-spacing: 8px; color: var(--accent);">INITIALIZE</h1>
+        <p style="color: #444; font-size: 0.7rem; margin-top: 10px;">CLICK TO ENTER AERO SPACE</p>
+    </div>
+
+    <div id="cursor"></div>
+
+    <video autoplay muted loop playsinline id="video-bg">
+        <source src="https://i.imgur.com/qp7tRuB.mp4" type="video/mp4">
+    </video>
+
+    <audio id="bg-audio" loop>
+        <source src="https://files.catbox.moe/03f0un.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <div class="black-glass card">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="https://i.imgur.com/nt1n9Pl.jpeg" style="width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover;">
+            </div>
+            <h1 style="text-align: center; letter-spacing: -1px;">carlpeanuts</h1>
+            <p style="text-align: center; color: var(--accent); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 15px;">MR10AKA</p>
+            <p style="text-align: center; color: #888; font-size: 0.9rem;">im 14 and i love code lol</p>
+        </div>
+
+        <div class="black-glass card">
+            <h3 style="font-size: 0.7rem; color: #444; letter-spacing: 2px; margin-bottom: 10px;">SOCIAL CONNECTIONS</h3>
+            <div class="btn-list">
+                <a href="https://x.com/muhaa631233" target="_blank" class="liquid-btn"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+                <a href="https://www.reddit.com/user/Terrible_Chapter8514/" target="_blank" class="liquid-btn"><i class="fa-brands fa-reddit-alien"></i> Reddit</a>
+                <a href="https://www.tiktok.com/@brushazztheguy" target="_blank" class="liquid-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <div class="liquid-btn" onclick="copyDiscord()" style="cursor: pointer;">
+                    <i class="fa-brands fa-discord"></i> <span id="discord-text">carlpeanuts (Copy)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="black-glass card">
+            <h3 style="font-size: 0.7rem; color: #444; letter-spacing: 2px; margin-bottom: 10px;">FANDOMS</h3>
+            <div class="btn-list">
+                <a href="https://www.glitchprod.com/the-amazing-digital-circus" target="_blank" class="liquid-btn"><i class="fa-solid fa-star"></i> TADC</a>
+                <a href="https://www.roblox.com/games/6516141723/DOORS" target="_blank" class="liquid-btn"><i class="fa-solid fa-door-open"></i> Roblox Doors</a>
+                <a href="https://www.roblox.com/games/13214218320/GRACE" target="_blank" class="liquid-btn"><i class="fa-solid fa-shield-halved"></i> Roblox Grace</a>
+                <a href="https://www.innersloth.com/games/among-us/" target="_blank" class="liquid-btn"><i class="fa-solid fa-user-astronaut"></i> Among Us</a>
+                <a href="https://www.minecraft.net" target="_blank" class="liquid-btn"><i class="fa-solid fa-cube"></i> Minecraft</a>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div style="display: flex; gap: 10px;">
+                <span style="color: var(--accent);">></span>
+                <input type="text" id="termInput" placeholder="Codes: 'bright', 'matrix', 'reset'..." autocomplete="off">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const audio = document.getElementById('bg-audio');
+        
+        function startExperience() {
+            document.getElementById('entry-overlay').style.opacity = '0';
+            setTimeout(() => { document.getElementById('entry-overlay').style.display = 'none'; }, 1000);
+            audio.play();
+        }
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Smooth Tilt
+        const cards = document.querySelectorAll('.card');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            cards.forEach(card => card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`);
+        });
+
+        // Terminal Codes
+        const input = document.getElementById('termInput');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = input.value.toLowerCase().trim();
+                if (cmd === 'bright') document.body.classList.add('bright-mode');
+                if (cmd === 'dark') document.body.classList.remove('bright-mode');
+                if (cmd === 'matrix') document.documentElement.style.setProperty('--accent', '#00ff41');
+                if (cmd === 'reset') location.reload();
+                input.value = '';
+            }
+        });
+
+        function copyDiscord() {
+            navigator.clipboard.writeText('carlpeanuts');
+            document.getElementById('discord-text').innerText = "Copied User!";
+            setTimeout(() => { document.getElementById('discord-text').innerText = "carlpeanuts (Copy)"; }, 2000);
+        }
+    </script>
+</body>
+</html>
